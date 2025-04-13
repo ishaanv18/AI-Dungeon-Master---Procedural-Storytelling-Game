@@ -5,7 +5,7 @@ import './GameInterface.css';
 const GameInterface = ({ character, storyData, onMakeChoice, onEndStory }) => {
   const [isTyping, setIsTyping] = useState(true);
   const [displayedText, setDisplayedText] = useState('');
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [textPosition, setTextPosition] = useState(0);
   const [avatarLoaded, setAvatarLoaded] = useState(false);
   
   // Typing effect for story text
@@ -15,14 +15,14 @@ const GameInterface = ({ character, storyData, onMakeChoice, onEndStory }) => {
     // Reset state when story data changes
     setIsTyping(true);
     setDisplayedText('');
-    setCurrentTextIndex(0);
+    setTextPosition(0);
     
     const text = storyData.currentScene;
     const typingSpeed = 30; // milliseconds per character
     
     // Create a single interval that handles the typing
     const typingInterval = setInterval(() => {
-      setCurrentTextIndex(prevIndex => {
+      setTextPosition(prevIndex => {
         // If we've reached the end of text, clear interval and stop typing
         if (prevIndex >= text.length) {
           clearInterval(typingInterval);
@@ -45,7 +45,7 @@ const GameInterface = ({ character, storyData, onMakeChoice, onEndStory }) => {
   // Skip typing animation
   const skipTyping = () => {
     setDisplayedText(storyData.currentScene);
-    setCurrentTextIndex(storyData.currentScene.length);
+    setTextPosition(storyData.currentScene.length);
     setIsTyping(false);
   };
   
