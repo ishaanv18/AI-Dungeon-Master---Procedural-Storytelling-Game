@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 200 200">
+  <!-- Background with gradient -->
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#2a1a4a" />
+      <stop offset="100%" stop-color="#121212" />
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="url(#bg)" stroke="#d4af37" stroke-width="2" />
+  
+  <!-- Wizard hat -->
+  <path d="M100 30 L130 80 L70 80 Z" fill="#6a0dad" stroke="#d4af37" stroke-width="1.5" />
+  <path d="M70 80 L130 80 L120 90 L80 90 Z" fill="#4a0d7d" stroke="#d4af37" stroke-width="1.5" />
+  
+  <!-- Face outline -->
+  <circle cx="100" cy="110" r="30" fill="#1e1e24" stroke="#d4af37" stroke-width="1.5" />
+  
+  <!-- Eyes -->
+  <circle cx="85" cy="105" r="5" fill="#d4af37" filter="url(#glow)" />
+  <circle cx="115" cy="105" r="5" fill="#d4af37" filter="url(#glow)" />
+  
+  <!-- Beard -->
+  <path d="M100 120 Q100 150 70 140 Q100 145 100 150 Q100 145 130 140 Q100 150 100 120" fill="#d4af37" stroke="#d4af37" stroke-width="0.5" />
+  
+  <!-- Staff -->
+  <line x1="160" y1="50" x2="140" y2="150" stroke="#8b4513" stroke-width="5" />
+  <circle cx="160" cy="50" r="8" fill="#d4af37" filter="url(#glow)" />
+  
+  <!-- Decorative elements -->
+  <circle cx="100" cy="100" r="75" fill="none" stroke="#d4af37" stroke-width="0.5" stroke-dasharray="2,3" />
+  
+  <!-- Stars -->
+  <g fill="#d4af37" filter="url(#glow)">
+    <circle cx="60" cy="50" r="2" />
+    <circle cx="140" cy="40" r="2" />
+    <circle cx="40" cy="100" r="2" />
+    <circle cx="150" cy="110" r="2" />
+    <circle cx="70" cy="150" r="2" />
+    <circle cx="130" cy="160" r="2" />
+  </g>
+</svg>
