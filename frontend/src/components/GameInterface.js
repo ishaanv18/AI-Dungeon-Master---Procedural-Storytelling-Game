@@ -5,7 +5,7 @@ import './GameInterface.css';
 const GameInterface = ({ character, storyData, onMakeChoice, onEndStory }) => {
   const [isTyping, setIsTyping] = useState(true);
   const [displayedText, setDisplayedText] = useState('');
-  const [textPosition, setTextPosition] = useState(0);
+  // Remove the unused state variable
   const [avatarLoaded, setAvatarLoaded] = useState(false);
   
   // Typing effect for story text
@@ -15,25 +15,23 @@ const GameInterface = ({ character, storyData, onMakeChoice, onEndStory }) => {
     // Reset state when story data changes
     setIsTyping(true);
     setDisplayedText('');
-    setTextPosition(0);
+    let currentPosition = 0;
     
     const text = storyData.currentScene;
     const typingSpeed = 30; // milliseconds per character
     
     // Create a single interval that handles the typing
     const typingInterval = setInterval(() => {
-      setTextPosition(prevIndex => {
-        // If we've reached the end of text, clear interval and stop typing
-        if (prevIndex >= text.length) {
-          clearInterval(typingInterval);
-          setIsTyping(false);
-          return prevIndex;
-        }
-        
-        // Update displayed text with the next character
-        setDisplayedText(text.substring(0, prevIndex + 1));
-        return prevIndex + 1;
-      });
+      // If we've reached the end of text, clear interval and stop typing
+      if (currentPosition >= text.length) {
+        clearInterval(typingInterval);
+        setIsTyping(false);
+        return;
+      }
+      
+      // Update displayed text with the next character
+      currentPosition++;
+      setDisplayedText(text.substring(0, currentPosition));
     }, typingSpeed);
     
     // Clean up interval on unmount or when story changes
@@ -45,7 +43,7 @@ const GameInterface = ({ character, storyData, onMakeChoice, onEndStory }) => {
   // Skip typing animation
   const skipTyping = () => {
     setDisplayedText(storyData.currentScene);
-    setTextPosition(storyData.currentScene.length);
+    // Remove reference to setTextPosition since we no longer use that state
     setIsTyping(false);
   };
   
